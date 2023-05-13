@@ -1,14 +1,12 @@
 package TestesIntegracao;
 
-import java.util.List;
-
 import br.com.DAO.MarcacoesFeitasDAO;
 import br.com.Entity.MarcacoesFeitas;
 
 public class TestesIntegration_MarcacoesFeitas {
 
 	public static void main(String[] args) {
-		
+
 		MarcacoesFeitas mf = new MarcacoesFeitas();
 		MarcacoesFeitasDAO mfdao = new MarcacoesFeitasDAO();
 		try {
@@ -16,17 +14,17 @@ public class TestesIntegration_MarcacoesFeitas {
 			mf.setEntrada("08:00");
 			mf.setIntervaloInicio("12:15");
 			mf.setIntervaloFim("13:20");
-			mf.setSaida("16:00");	
-			
+			mf.setSaida("16:00");
+
 			mfdao.adicionarMarcacao(mf);
 			System.out.println(mf);
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 //---------------------------------------Metodo para Listar todos os registros-----------------------------------------------------
-		
+
 //		try {
 //			List<MarcacoesFeitas> horario = mfdao.listarTodasMarcacoesFeitas();
 //
@@ -38,12 +36,13 @@ public class TestesIntegration_MarcacoesFeitas {
 //		} catch (Exception e) {
 //			System.out.println(e);
 //		}
-		
-		//---------------------------------------Metodo para apagar o registros pelo cpf-----------------------------------------------------
-		
+
+		// ---------------------------------------Metodo para apagar o registros pelo
+		// cpf-----------------------------------------------------
+
 //		mf.setCpf("6977984031");
 //		mfdao.removerMarcacoesFeitas(mf.getCpf());
-		
+
 	}
 
 }

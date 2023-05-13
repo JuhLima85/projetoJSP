@@ -1,8 +1,6 @@
 package br.com.Entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MarcacoesFeitas implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -107,11 +105,5 @@ public class MarcacoesFeitas implements Serializable {
 		return "MarcacoesFeitas [id=" + id + ", cpf=" + cpf + ", entrada=" + entrada + ", intervaloInicio="
 				+ intervaloInicio + ", intervaloFim=" + intervaloFim + ", saida=" + saida + "]";
 	}
-	
-	
 
 }
-
-
-
-

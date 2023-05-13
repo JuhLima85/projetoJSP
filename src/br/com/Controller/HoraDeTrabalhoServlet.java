@@ -17,9 +17,19 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
     
     private HoraDeTrabalhoDAO horaDeTrabalhoDAO;
 
+    
     public void init() {
         horaDeTrabalhoDAO = new HoraDeTrabalhoDAO();
+        // Para que os horários sejam inicilizados ao abrir a tela
+        listarHorarios();
     }
+
+    // Para que os horários sejam inicilizados ao abrir a tela
+    private void listarHorarios() {
+        List<HorarioDeTrabalho> horarios = horaDeTrabalhoDAO.listarTodosHorariosDeTrabalho();
+        getServletContext().setAttribute("horarios", horarios);
+    }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

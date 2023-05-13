@@ -18,6 +18,14 @@ public class MarcacoesFeitasServlet extends HttpServlet {
 
     public void init() {
         marcacoesFeitasDAO = new MarcacoesFeitasDAO();
+        // Para que os horários sejam inicilizados ao abrir a tela
+        listarMarcacoes();
+    }
+    
+    // Para que as marcações sejam inicilizados ao abrir a tela
+    private void listarMarcacoes() {
+    	 List<MarcacoesFeitas> marcacoes = marcacoesFeitasDAO.listarTodasMarcacoesFeitas();
+    	 getServletContext().setAttribute("marcacoes", marcacoes);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -98,4 +106,3 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         }
     }
 }
-
