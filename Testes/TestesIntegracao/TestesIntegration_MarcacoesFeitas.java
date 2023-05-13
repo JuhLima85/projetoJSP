@@ -19,6 +19,7 @@ public class TestesIntegration_MarcacoesFeitas {
 			mf.setSaida("16:00");	
 			
 			mfdao.adicionarMarcacao(mf);
+			System.out.println(mf);
 			
 		} catch (Exception e) {
 			System.out.println(e);

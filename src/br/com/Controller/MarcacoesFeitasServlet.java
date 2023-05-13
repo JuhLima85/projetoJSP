@@ -38,15 +38,15 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         String intervaloFim = request.getParameter("intervaloFim");
         String saida = request.getParameter("saida");
 
-//        if (
+        if (
 //        	cpf == null || cpf.isEmpty() ||
-//            entrada == null || entrada.isEmpty() ||
+           entrada == null || entrada.isEmpty() ||
 //            intervaloInicio == null || intervaloInicio.isEmpty() ||
 //            intervaloFim == null || intervaloFim.isEmpty() ||
-//            saida == null || saida.isEmpty()
-//        		) {
+            saida == null || saida.isEmpty()
+        		) {
 //        	 throw new Exception("Todos os campos devem ser preenchidos");
-//        }
+        }
 
         MarcacoesFeitas horario = new MarcacoesFeitas();
         horario.setCpf(cpf);
@@ -70,8 +70,8 @@ public class MarcacoesFeitasServlet extends HttpServlet {
 
     private void listarMarcacoes(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<MarcacoesFeitas> horarios = marcacoesFeitasDAO.listarTodasMarcacoesFeitas();
-        request.setAttribute("horarios", horarios);
+        List<MarcacoesFeitas> marcacoes = marcacoesFeitasDAO.listarTodasMarcacoesFeitas();
+        request.setAttribute("marcacoes", marcacoes);
         request.getRequestDispatcher("controleDeHora.jsp").forward(request, response);
     }
     

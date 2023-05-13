@@ -54,10 +54,12 @@
 					<td>${horario.intervaloInicio}</td>
 					<td>${horario.intervaloFim}</td>
 					<td>${horario.saida}</td>
-					<td style="display: flex; justify-content: space-between; align-items: center; width: 120px;">
-        <button class="editar" onclick="editarHorario(${horario.id})">Editar</button>
-        <button class="excluir" onclick="excluirHorario(${horario.id})" onclick="if(confirm('Tem certeza que deseja excluir esse(s) horários?')) { document.forms[0].reset(); }">Excluir</button>
-        </td>
+					<td
+						style="display: flex; justify-content: space-between; align-items: center; width: 120px;">
+						<button class="editar" onclick="editarHorario(${horario.id})">Editar</button>
+						<button class="excluir" onclick="excluirHorario(${horario.id})"
+							onclick="if(confirm('Tem certeza que deseja excluir esse(s) horários?')) { document.forms[0].reset(); }">Excluir</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -66,23 +68,25 @@
 	<div class="clear"></div>
 	<h2 class="comMargem">Marcações Feitas</h2>
 	<form method="POST" action="MarcacoesFeitasServlet">
-	<input type="hidden" name="action" value="add">
-		Entrada: <input type="text" name="entrada"
-			pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM"
-			maxlength="5"> Inicio do Intervalo: <input type="text"
-			name="intervaloInicio" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$"
-			placeholder="HH:MM" maxlength="5" required> Fim do Intervalo:
-		<input type="text" name="intervaloFim"
-			pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM"
-			maxlength="5" required> Saída: <input type="text"
-			name="saida" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$"
-			placeholder="HH:MM" maxlength="5">
-		<div>
-			<br> <input type="submit" value="Cadastrar">
-		</div>
-	</form>
+  <input type="hidden" name="action" value="add">
+  <label>
+  <input type="hidden" name="cpf" id="cpf" value="">
+  </label>
+  Entrada:
+  <input type="text" name="entrada" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5">
+  Inicio do Intervalo:
+  <input type="text" name="intervaloInicio" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5" required>
+  Fim do Intervalo:
+  <input type="text" name="intervaloFim" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5" required>
+  Saída:
+  <input type="text" name="saida" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5">
+  <div>
+    <br>
+    <input type="submit" value="Cadastrar">
+  </div>
+</form>
 
-	<!-- Lista das marcações feitas 
+	<!-- Lista das marcações feitas -->
 	<table class="horarios">
 		<thead>
 			<tr>
@@ -94,23 +98,23 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="marcacoesFeitasList" items="${marcacoesFeitasList}">
+			<c:forEach var="marcacao" items="${marcacoes}">
 				<tr>
-					<td>${marcacoesFeitasList.entrada}</td>
-					<td>${marcacoesFeitasList.intervaloInicio}</td>
-					<td>${marcacoesFeitasList.intervaloFim}</td>
-					<td>${marcacoesFeitasList.saida}</td>
+					<td>${marcacao.entrada}</td>
+					<td>${marcacao.intervaloInicio}</td>
+					<td>${marcacao.intervaloFim}</td>
+					<td>${marcacao.saida}</td>
 					<td></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-<div class="clear"></div
--->
+<div class="clear"></div>
+
 
 	<h2 class="comMargem">Atrasos</h2>
 	<!-- Lista dos atrasos -->
-	<table class="horarios">
+	<!-- <table class="horarios">
 		<thead>
 			<tr>
 				<th>Entrada</th>
@@ -132,7 +136,7 @@
 
 	<h2 class="comMargem">Hora Extra</h2>
 	<!-- Lista das horas extras -->
-	<table class="horarios">
+	<!-- <table class="horarios">
 		<thead>
 			<tr>
 				<th>Entrada</th>
@@ -151,7 +155,7 @@
 		</tbody>
 	</table>
 	<div class="clear"></div>
-	<script src="scripts/validador.js"></script>
+	<script src="scripts/validador.js"></script>   -->
 	<!-- 
 <script>
   function excluirHorario(id) {
@@ -178,5 +182,11 @@
   }
 </script>
  -->
+ 
+ <script>
+  // preenche o valor do campo "cpf" com o valor do CPF do usuário logado
+  var cpf = "12345678900"; // substitua por uma chamada à API de autenticação ou por um valor dinâmico
+  document.getElementById("cpf").value = cpf;
+</script>
 </body>
 </html>
