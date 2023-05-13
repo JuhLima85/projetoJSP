@@ -66,6 +66,7 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         marcacoesFeitasDAO.adicionarMarcacao(horario);
 
         listarMarcacoes(request, response);
+        
 }
 
     private void removerMarcacao(HttpServletRequest request, HttpServletResponse response)
@@ -94,15 +95,15 @@ public class MarcacoesFeitasServlet extends HttpServlet {
                 	removerMarcacao(request, response);
                     break;
                 case "list":
-                	listarMarcacoes(request, response);
+                	//listarMarcacoes(request, response);
                     break;
                 
                 default:
-                	listarMarcacoes(request, response);
+                	//listarMarcacoes(request, response);
                     break;
             }
         } else {
-        	listarMarcacoes(request, response);
+        	//listarMarcacoes(request, response);
         }
     }
 }

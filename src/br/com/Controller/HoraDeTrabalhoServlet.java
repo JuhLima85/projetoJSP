@@ -18,10 +18,14 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
     private HoraDeTrabalhoDAO horaDeTrabalhoDAO;
 
     
-    public void init() {
+    public void init() throws ServletException {
+        super.init();
         horaDeTrabalhoDAO = new HoraDeTrabalhoDAO();
-        // Para que os horários sejam inicilizados ao abrir a tela
-        listarHorarios();
+        try {
+            listarHorarios();
+        } catch (Exception e) {
+            throw new ServletException("Erro ao listar horários", e);
+        }
     }
 
     // Para que os horários sejam inicilizados ao abrir a tela
@@ -66,6 +70,7 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
         horaDeTrabalhoDAO.adicionarHorarioDeTrabalho(horario);
 
         listarHorarios(request, response);
+                
 }
 
 

@@ -15,7 +15,7 @@
 		<input type="hidden" name="action" value="add">
 		<h2 class="semMargem">Registro de ponto</h2>
 		<div>
-			<label> CPF: <input type="text" name="cpf" required></label>
+			<label> CPF: <input type="text" name="cpf" value="${not empty param.cpf ? param.cpf : ''}" required></label>
 		</div>
 		<h2 class="comMargem">Horário de Trabalho</h2>
 		Entrada: <input type="text" name="entrada"
