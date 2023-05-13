@@ -3,39 +3,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-
 <html>
 <head>
 <title>Controle de Horário</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 	<form method="POST" action="HoraDeTrabalhoServlet">
-		<input type="hidden" name="action" value="add">
-		<h2 class="semMargem">Registro de ponto</h2>
-		<div>
-			<label> CPF: <input type="text" name="cpf" value="${not empty param.cpf ? param.cpf : ''}" required></label>
-		</div>
-		<h2 class="comMargem">Horário de Trabalho</h2>
-		Entrada: <input type="text" name="entrada"
-			pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM"
-			maxlength="5"> Inicio do Intervalo: <input type="text"
-			name="intervaloInicio" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$"
-			placeholder="HH:MM" maxlength="5" required> Fim do Intervalo:
-		<input type="text" name="intervaloFim"
-			pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM"
-			maxlength="5" required> Saída: <input type="text"
-			name="saida" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$"
-			placeholder="HH:MM" maxlength="5">
-		<div>
-			<br> <input type="submit" value="Cadastrar"> <input
-				type="button" value="Excluir todos"
-				onclick="if(confirm('Tem certeza que deseja excluir todos?')) { document.forms[0].reset(); }">
-		</div>
-		<div class="clear"></div>
-	</form>
+	<input type="hidden" name="action" value="add">
+	<input type="hidden" name="delete_all" value="true">
+	<h2 class="semMargem">Registro de ponto</h2> 
+	<div>
+		<label> CPF: <input type="text" name="cpf"
+		value="${not empty param.cpf ? param.cpf : ''}" required></label>
+	</div>
+	<h2 class="comMargem">Horário de Trabalho</h2>
+	Entrada: <input type="text" name="entrada"
+	pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM"
+	maxlength="5"> Saída: <input type="text"
+	name="saida" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$"
+	placeholder="HH:MM" maxlength="5">
+	<div>
+	<br> 
+	<input type="submit" value="Cadastrar">
+	<input type="button" value="Excluir todos" onclick="if(confirm('Tem certeza que deseja excluir todos?')) { document.forms[0].action='HoraDeTrabalhoServlet?action=delete_all'; document.forms[0].submit(); }">
+</div>
+</form>
 
+
+		
+	<div class="clear"></div>
+	
 	<!-- Lista os horários de trabalho cadastrados -->
 	<table class="horarios">
 		<thead>
@@ -110,7 +108,6 @@
 	</table>
 	<div class="clear"></div>
 
-
 	<h2 class="comMargem">Atrasos</h2>
 	<!-- Lista dos atrasos -->
 	<!-- <table class="horarios">
@@ -184,7 +181,7 @@
 
 	<script>
   // preenche o valor do campo "cpf" com o valor do CPF do usuário logado
-  var cpf = "12345678900"; // substitua por uma chamada à API de autenticação ou por um valor dinâmico
+  var cpf = "01439869103"; // substitua por uma chamada à API de autenticação ou por um valor dinâmico
   document.getElementById("cpf").value = cpf;
 </script>
 </body>

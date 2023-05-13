@@ -12,7 +12,7 @@ import br.com.Persistence.Conneciton;
 public class HoraDeTrabalhoDAO {
 
 	private Conneciton conn;
-	private List<HorarioDeTrabalho> horarios;
+private List<HorarioDeTrabalho> horarios;
 
 	public HoraDeTrabalhoDAO() {
 		this.conn = new Conneciton();
