@@ -47,7 +47,7 @@
 					<td>${horario.saida}</td>
 					<td
 						style="display: flex; justify-content: space-between; align-items: center; width: 120px;">
-						<button class="editar" onclick="editarHorario(${horario.id})">Editar</button>
+						<button class="editar" onclick="editarHorario(${horario.id})">Editar</button>						
 						<button class="excluir" onclick="excluirHorario(${horario.id})">Excluir</button>
 					</td>
 				</tr>
@@ -57,7 +57,6 @@
 		</tbody>
 	</table>
 	
-
 	<div class="clear"></div>	
 	<h2 class="comMargem">Marcações Feitas</h2>
 	<form method="POST" action="MarcacoesFeitasServlet">
@@ -98,12 +97,17 @@
 	<h2 class="comMargem">Atrasos</h2>
 	<!-- Lista dos atrasos -->
 	<h2 class="comMargem">Hora Extra</h2>
-	<!-- Lista das horas extras -->
+	<!-- Lista das horas extras -->	
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script>
+	function editarHorario(id) {
+        // Redireciona para a página de edição passando o ID como parâmetro na URL
+	 window.location.href = "HoraDeTrabalhoServlet?action=edit&id=" + id;
+    }
+	
 	function excluirHorario(id) {
 	     if (confirm('Tem certeza que deseja excluir este horário?')) {
 	        var form = document.createElement('form');
@@ -116,22 +120,19 @@
 	        // Exibir mensagem de excluído com sucesso como pop-up
 	        alert("Horário excluído com sucesso!");
 	    }
-	}
+	}	  
 	
 	// preenche o valor do campo "cpf" com o valor do CPF do usuário logado
 	  var cpf = "01439869103"; // substitua por uma chamada à API de autenticação ou por um valor dinâmico
 	  document.getElementById("cpf").value = cpf;
 	  
-	  //para aplicar a máscara ao campo de valor hora
-	 $(document).ready(function() {
+  //para aplicar automaticamente a máscara ao campo de valor hora
+  $(document).ready(function() {
   $('input[name="entrada"]').mask('00:00');
   $('input[name="intervaloInicio"]').mask('00:00');
   $('input[name="intervaloFim"]').mask('00:00');
   $('input[name="saida"]').mask('00:00');
 });
-
-
-
 </script>
 
 </body>

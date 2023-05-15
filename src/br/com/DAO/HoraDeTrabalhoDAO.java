@@ -19,22 +19,22 @@ public class HoraDeTrabalhoDAO {
 		horarios = new ArrayList<>(3);
 	}
 
-	public void adicionarHorario(HorarioDeTrabalho horario) {
-		String sql = "INSERT INTO HorarioTrabalho (cpf, entrada, inicio_Intervalo, fim_Intervalo, saida) VALUES (?, ?, ?, ?, ?)";
-
-		try (java.sql.Connection con = conn.conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
-
-			stmt.setString(1, horario.getCpf());
-			stmt.setString(2, horario.getEntrada());
-			stmt.setString(3, horario.getIntervaloInicio());
-			stmt.setString(4, horario.getIntervaloFim());
-			stmt.setString(5, horario.getSaida());
-
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void adicionarHorario(HorarioDeTrabalho horario) {
+//		String sql = "INSERT INTO HorarioTrabalho (cpf, entrada, inicio_Intervalo, fim_Intervalo, saida) VALUES (?, ?, ?, ?, ?)";
+//
+//		try (java.sql.Connection con = conn.conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
+//
+//			stmt.setString(1, horario.getCpf());
+//			stmt.setString(2, horario.getEntrada());
+//			stmt.setString(3, horario.getIntervaloInicio());
+//			stmt.setString(4, horario.getIntervaloFim());
+//			stmt.setString(5, horario.getSaida());
+//
+//			stmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	public void adicionarHorarioDeTrabalho(HorarioDeTrabalho horario) {
 		String sql = "INSERT INTO HorarioTrabalho (cpf, entrada, inicio_Intervalo, fim_Intervalo, saida) VALUES (?, ?, ?, ?, ?)";
@@ -132,5 +132,39 @@ public class HoraDeTrabalhoDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	 public void selecionarHorario( HorarioDeTrabalho horario) {
+	        String sql = "SELECT * FROM HorarioTrabalho WHERE id = ?";
+	        
+	        try (java.sql.Connection con = conn.conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
+	            stmt.setLong(1, horario.getId());
+	            ResultSet rs = stmt.executeQuery();
+	            if (rs.next()) {
+	            	horario.setId(rs.getLong("id"));
+	            	horario.setCpf(rs.getString("cpf"));
+					horario.setEntrada(rs.getString("entrada"));
+					horario.setIntervaloInicio(rs.getString("inicio_Intervalo"));
+					horario.setIntervaloFim(rs.getString("fim_Intervalo"));
+					horario.setSaida(rs.getString("saida"));
+	        }
+	           	            
+	        }catch (SQLException e) {
+				e.printStackTrace();
+			}     	       
+	    }
+	 
+	 public void atualizarHorario(HorarioDeTrabalho horario) {
+		    String sql = "UPDATE HorarioTrabalho SET entrada = ?, saida = ? WHERE id = ?";
+		    try (java.sql.Connection con = conn.conectar();
+		            PreparedStatement stmt = con.prepareStatement(sql)) {
+		        stmt.setString(1, horario.getEntrada());
+		        stmt.setString(2, horario.getSaida());
+		        stmt.setLong(3, horario.getId());
+		        stmt.executeUpdate();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
+
 
 }

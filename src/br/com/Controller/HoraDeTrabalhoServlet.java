@@ -3,6 +3,7 @@ package br.com.Controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +50,9 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 			case "delete":
 				removerHorarioPorId(request, response);
 				break;
+			 case "edit":
+	                atualizarHorario(request, response);
+	                break;
 			default:
 				listarHorarios(request, response);
 				break;
@@ -103,6 +107,28 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 		request.setAttribute("horarios", horarios);
 		request.getRequestDispatcher("controleDeHora.jsp").forward(request, response);
 	}
+	
+	private void exibirFormularioEdicao(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		HorarioDeTrabalho horario = new HorarioDeTrabalho();
+		horario.setId(id);
+		horaDeTrabalhoDAO.selecionarHorario(horario);
+		request.setAttribute("horario", horario);
+		RequestDispatcher rd = request.getRequestDispatcher("/editar.jsp");
+		rd.forward(request, response);   
+	}
+	
+	protected void atualizarHorario(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+	    String idConverter = request.getParameter("id");
+	    HorarioDeTrabalho horario = new HorarioDeTrabalho();
+	    horario.setId(Long.parseLong(idConverter));
+	    horario.setEntrada(request.getParameter("entrada"));
+	    horario.setSaida(request.getParameter("saida"));
+	    horaDeTrabalhoDAO.atualizarHorario(horario);
+	    response.sendRedirect("controleDeHora.jsp");
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -113,6 +139,9 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 			case "list":
 				listarHorarios(request, response);
 				break;
+			 case "edit":
+	                exibirFormularioEdicao(request, response);
+	                break;
 			default:
 				listarHorarios(request, response);
 				break;
