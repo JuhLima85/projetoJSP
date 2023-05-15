@@ -46,21 +46,17 @@ public class MarcacoesFeitasDAO {
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    String cpf = rs.getString("cpf");
-                    String entrada = rs.getString("entrada");
-                    String inicio_Intervalo = rs.getString("inicio_Intervalo");
-                    String fim_Intervalo = rs.getString("fim_Intervalo");
-                    String saida = rs.getString("saida");
+                while (rs.next()) {                  
                     
-                    MarcacoesFeitas horario = new MarcacoesFeitas();
-                    horario.setCpf(cpf);
-                    horario.setEntrada(entrada);
-                    horario.setIntervaloInicio(inicio_Intervalo);
-                    horario.setIntervaloFim(fim_Intervalo);
-                    horario.setSaida(saida);
+                    MarcacoesFeitas marcacao = new MarcacoesFeitas();
+                    marcacao.setId(rs.getLong("id"));
+                    marcacao.setCpf(rs.getString("cpf"));
+                    marcacao.setEntrada(rs.getString("entrada"));
+                    marcacao.setIntervaloInicio(rs.getString("inicio_Intervalo"));
+                    marcacao.setIntervaloFim(rs.getString("fim_Intervalo"));
+                    marcacao.setSaida(rs.getString("saida"));
 
-                    horarios.add(horario);
+                    horarios.add(marcacao);
                 }
             }
 
@@ -71,31 +67,26 @@ public class MarcacoesFeitasDAO {
         return horarios; 
     }
     
-    public MarcacoesFeitas listarMarcacoesFeitasPorCpf(MarcacoesFeitas cpf) {
-        String sql = "SELECT cpf, entrada, inicio_Intervalo, fim_Intervalo, saida FROM HorarioTrabalho WHERE cpf = ?";
+    public  List<MarcacoesFeitas> listarMarcacoesFeitasPorCpf(String cpf) {
+        String sql = "SELECT * FROM HorarioTrabalho WHERE cpf = ?";
+        List<MarcacoesFeitas> horarios = new ArrayList<>();
 
         try (java.sql.Connection con = conn.conectar();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
-            stmt.setObject(1, cpf.getCpf());            
+            stmt.setObject(1, cpf);            
 
             try (ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
-                	String  cpfResult = rs.getString("cpf");
-                    String entrada = rs.getString("entrada");
-                    String inicio_Intervalo = rs.getString("inicio_Intervalo");
-                    String fim_Intervalo = rs.getString("fim_Intervalo");
-                    String saida = rs.getString("saida");
-
-                    MarcacoesFeitas horario = new MarcacoesFeitas();
-                    horario.setCpf(cpfResult);
-                    horario.setEntrada(entrada);
-                    horario.setIntervaloInicio(inicio_Intervalo);
-                    horario.setIntervaloFim(fim_Intervalo);
-                    horario.setSaida(saida);
-
-                    return horario;
+                	MarcacoesFeitas marcacao = new MarcacoesFeitas();
+                	marcacao.setId(rs.getLong("id"));
+                	marcacao.setCpf(rs.getString("cpf"));
+                	marcacao.setEntrada(rs.getString("entrada"));
+                	marcacao.setIntervaloInicio(rs.getString("inicio_Intervalo"));
+                	marcacao.setIntervaloFim(rs.getString("fim_Intervalo"));
+                	marcacao.setSaida(rs.getString("saida"));
+                	horarios.add(marcacao);
                 }
             }
 
@@ -103,7 +94,7 @@ public class MarcacoesFeitasDAO {
             e.printStackTrace();
         }
 
-        return null; 
+        return horarios; 
     }
 
     public void removerMarcacoesFeitas(String cpf) {

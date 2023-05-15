@@ -10,8 +10,11 @@ public class TestesIntegration_HorarioDeTrabalho {
 	public static void main(String[] args) {
 		HorarioDeTrabalho ht = new HorarioDeTrabalho();
 		HoraDeTrabalhoDAO htDao = new HoraDeTrabalhoDAO();
+	
+		//htDao.removerHorarioDeTrabalho("01439869103");
 		
-		htDao.removerHorarioDeTrabalho("01439869103");
+		htDao.removerHoraio(12L);
+		
 //		try {
 //			ht.setCpf("6977984000");
 //			ht.setEntrada("08:00");
@@ -20,11 +23,11 @@ public class TestesIntegration_HorarioDeTrabalho {
 //			ht.setSaida("16:00");	
 //			
 //			htDao.adicionarHorarioDeTrabalho(ht);
-//			
+//			System.out.println("Adcionado com sucesso");
 //		} catch (Exception e) {
 //			System.out.println(e);
 //		}	
-		
+//		
 		//---------------------------------------Metodo para Listar todos os registros-----------------------------------------------------
 //		
 //		try {

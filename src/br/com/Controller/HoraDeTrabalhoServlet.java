@@ -17,18 +17,18 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private HoraDeTrabalhoDAO horaDeTrabalhoDAO;
-	
-	 public void init() throws ServletException {
-	        super.init();
-	        horaDeTrabalhoDAO = new HoraDeTrabalhoDAO();
-	        try {
-	            listarHorarios();
-	        } catch (Exception e) {
-	            throw new ServletException("Erro ao listar horários", e);
-	        }
-	    }
 
-	// Para que os horários permaneçao listado ao navegar na tela
+	public void init() throws ServletException {
+		super.init();
+		horaDeTrabalhoDAO = new HoraDeTrabalhoDAO();
+		try {
+			listarHorarios();
+		} catch (Exception e) {
+			throw new ServletException("Erro ao listar horários", e);
+		}
+	}
+
+	// Para que os horários permaneçam listado ao navegar na tela
 	private void listarHorarios() {
 		List<HorarioDeTrabalho> horarios = horaDeTrabalhoDAO.listarTodosHorariosDeTrabalho();
 		getServletContext().setAttribute("horarios", horarios);
@@ -45,6 +45,9 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 				break;
 			case "delete_all":
 				removerHorario(request, response);
+				break;
+			case "delete":
+				removerHorarioPorId(request, response);
 				break;
 			default:
 				listarHorarios(request, response);
@@ -86,6 +89,14 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 		listarHorarios(request, response);
 	}
 
+	protected void removerHorarioPorId(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		horaDeTrabalhoDAO.removerHoraio(id);
+		listarHorarios(request, response);
+
+	}
+
 	private void listarHorarios(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<HorarioDeTrabalho> horarios = horaDeTrabalhoDAO.listarTodosHorariosDeTrabalho();
@@ -98,7 +109,7 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if (action != null) {
-			switch (action) {	
+			switch (action) {
 			case "list":
 				listarHorarios(request, response);
 				break;

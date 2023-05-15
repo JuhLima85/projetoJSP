@@ -18,11 +18,11 @@ public class MarcacoesFeitasServlet extends HttpServlet {
 
     public void init() {
         marcacoesFeitasDAO = new MarcacoesFeitasDAO();
-        // Para que os horários sejam inicilizados ao abrir a tela
+      //Para que os horários permaneçam listado ao navegar na tela
         listarMarcacoes();
     }
     
-    // Para que as marcações sejam inicilizados ao abrir a tela
+    //Para que os horários permaneçam listado ao navegar na tela
     private void listarMarcacoes() {
     	 List<MarcacoesFeitas> marcacoes = marcacoesFeitasDAO.listarTodasMarcacoesFeitas();
     	 getServletContext().setAttribute("marcacoes", marcacoes);
@@ -34,8 +34,7 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         	adicionarMarcacao(request, response);
         } catch (Exception e) {
             throw new ServletException(e);
-        }
-       
+        }       
     }
 
     private void adicionarMarcacao(HttpServletRequest request, HttpServletResponse response)
@@ -46,14 +45,12 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         String intervaloFim = request.getParameter("intervaloFim");
         String saida = request.getParameter("saida");
 
-        if (
-//        	cpf == null || cpf.isEmpty() ||
+        if (        	
            entrada == null || entrada.isEmpty() ||
-//            intervaloInicio == null || intervaloInicio.isEmpty() ||
-//            intervaloFim == null || intervaloFim.isEmpty() ||
-            saida == null || saida.isEmpty()
-        		) {
-//        	 throw new Exception("Todos os campos devem ser preenchidos");
+           intervaloInicio == null || intervaloInicio.isEmpty() ||
+           intervaloFim == null || intervaloFim.isEmpty() ||
+            saida == null || saida.isEmpty()) {
+        	 throw new Exception("Todos os campos devem ser preenchidos");
         }
 
         MarcacoesFeitas horario = new MarcacoesFeitas();
@@ -70,8 +67,7 @@ public class MarcacoesFeitasServlet extends HttpServlet {
 }
 
     private void removerMarcacao(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       // int index = Integer.parseInt(request.getParameter("index"));
+            throws ServletException, IOException {       
     	String cpf = request.getParameter("cpf");
         marcacoesFeitasDAO.removerMarcacoesFeitas(cpf);
         listarMarcacoes(request, response);

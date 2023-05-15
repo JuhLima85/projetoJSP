@@ -12,7 +12,7 @@ import br.com.Persistence.Conneciton;
 public class HoraDeTrabalhoDAO {
 
 	private Conneciton conn;
-private List<HorarioDeTrabalho> horarios;
+	private List<HorarioDeTrabalho> horarios;
 
 	public HoraDeTrabalhoDAO() {
 		this.conn = new Conneciton();
@@ -61,18 +61,13 @@ private List<HorarioDeTrabalho> horarios;
 
 			try (ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
-					String cpf = rs.getString("cpf");
-					String entrada = rs.getString("entrada");
-					String inicio_Intervalo = rs.getString("inicio_Intervalo");
-					String fim_Intervalo = rs.getString("fim_Intervalo");
-					String saida = rs.getString("saida");
-
 					HorarioDeTrabalho horario = new HorarioDeTrabalho();
-					horario.setCpf(cpf);
-					horario.setEntrada(entrada);
-					horario.setIntervaloInicio(inicio_Intervalo);
-					horario.setIntervaloFim(fim_Intervalo);
-					horario.setSaida(saida);
+					horario.setId(rs.getLong("id"));
+					horario.setCpf(rs.getString("cpf"));
+					horario.setEntrada(rs.getString("entrada"));
+					horario.setIntervaloInicio(rs.getString("inicio_Intervalo"));
+					horario.setIntervaloFim(rs.getString("fim_Intervalo"));
+					horario.setSaida(rs.getString("saida"));
 
 					horarios.add(horario);
 				}
@@ -85,28 +80,22 @@ private List<HorarioDeTrabalho> horarios;
 		return horarios;
 	}
 
-	public HorarioDeTrabalho listarHorarioDeTrabalhoPorCpf(HorarioDeTrabalho cpf) {
+	public HorarioDeTrabalho listarHorarioDeTrabalhoPorCpf(String cpf) {
 		String sql = "SELECT cpf, entrada, inicio_Intervalo, fim_Intervalo, saida FROM HorarioTrabalho WHERE cpf = ?";
 
 		try (java.sql.Connection con = conn.conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
 
-			stmt.setObject(1, cpf.getCpf());
+			stmt.setObject(1, cpf);
 
 			try (ResultSet rs = stmt.executeQuery()) {
 
 				if (rs.next()) {
-					String cpfResult = rs.getString("cpf");
-					String entrada = rs.getString("entrada");
-					String inicio_Intervalo = rs.getString("inicio_Intervalo");
-					String fim_Intervalo = rs.getString("fim_Intervalo");
-					String saida = rs.getString("saida");
-
 					HorarioDeTrabalho horario = new HorarioDeTrabalho();
-					horario.setCpf(cpfResult);
-					horario.setEntrada(entrada);
-					horario.setIntervaloInicio(inicio_Intervalo);
-					horario.setIntervaloFim(fim_Intervalo);
-					horario.setSaida(saida);
+					horario.setCpf(rs.getString("cpf"));
+					horario.setEntrada(rs.getString("entrada"));
+					horario.setIntervaloInicio(rs.getString("inicio_Intervalo"));
+					horario.setIntervaloFim(rs.getString("fim_Intervalo"));
+					horario.setSaida(rs.getString("saida"));
 
 					return horario;
 				}
@@ -127,6 +116,18 @@ private List<HorarioDeTrabalho> horarios;
 			stmt.setString(1, cpf);
 			stmt.executeUpdate();
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void removerHoraio(Long id) {
+		String sql = "DELETE FROM HorarioTrabalho WHERE id = ?";
+
+		try (java.sql.Connection con = conn.conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
+
+			stmt.setLong(1, id);
+			stmt.executeUpdate();				
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
