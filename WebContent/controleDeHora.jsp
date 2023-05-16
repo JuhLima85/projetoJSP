@@ -62,9 +62,7 @@
 	<form method="POST" action="MarcacoesFeitasServlet">
 		<input type="hidden" name="action" value="add"> <label>
 			<input type="hidden" name="cpf" id="cpf" value="">
-		</label> Entrada: <input type="text" name="entrada" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5"> 
-				 Inicio do Intervalo: <input type="text" name="intervaloInicio" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5" required> 
-				 Fim do Intervalo: <input type="text" name="intervaloFim" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5" required> 
+		</label> Entrada: <input type="text" name="entrada" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5"> 				
 				 Saída: <input type="text" name="saida" pattern="^([0-1][0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:MM" maxlength="5">
 		<div>
 			<br> <input type="submit" value="Cadastrar">
@@ -74,9 +72,7 @@
 	<table class="horarios">
 		<thead>
 			<tr>
-				<th>Entrada</th>
-				<th>Saída Intervalo</th>
-				<th>Retorno Intervalo</th>
+				<th>Entrada</th>				
 				<th>Saída</th>
 				<th></th>
 			</tr>
@@ -84,9 +80,7 @@
 		<tbody>
 			<c:forEach var="marcacao" items="${marcacoes}">
 				<tr>
-					<td>${marcacao.entrada}</td>
-					<td>${marcacao.intervaloInicio}</td>
-					<td>${marcacao.intervaloFim}</td>
+					<td>${marcacao.entrada}</td>					
 					<td>${marcacao.saida}</td>
 				</tr>
 			</c:forEach>
@@ -94,8 +88,28 @@
 	</table>
 
 	<div class="clear"></div>
-	<h2 class="comMargem">Atrasos</h2>
+	<h2 class="comMargem">Atrasos</h2>	
 	<!-- Lista dos atrasos -->
+	<table class="horarios">
+		<thead>
+			<tr>
+				<th>Período</th>
+				<th>Horas</th>				
+				<th></th>
+			</tr>	
+		</thead>
+		<tbody>
+			<c:forEach var="ats" items="${at}">
+				<tr>
+					<td>${at.periodoAtraso}</td>
+					<td>${at.entrada}</td>
+				</tr>
+				 <script>
+    console.log(${at}); // aqui está o console.log() que você pode adicionar
+  </script>
+			</c:forEach>
+		</tbody>
+	</table>
 	<h2 class="comMargem">Hora Extra</h2>
 	<!-- Lista das horas extras -->	
 
@@ -103,6 +117,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 	<script>
+
+    console.log(${horario}); // aqui está o console.log() que você pode adicionar
+ 
 	function editarHorario(id) {
         // Redireciona para a página de edição passando o ID como parâmetro na URL
 	 window.location.href = "HoraDeTrabalhoServlet?action=edit&id=" + id;

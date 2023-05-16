@@ -130,10 +130,10 @@ class CalculoHoraExtraList {
             System.out.println("Data: " + horaExtra.getData() +
                     " - Entrada Prevista: " + horaExtra.getEntradaPrevista() +
                     " - Entrada Realizada: " + horaExtra.getEntradaRealizada() +
-                    " - Saída Prevista: " + horaExtra.getSaidaPrevista() +
-                    " - Saída Realizada: " + horaExtra.getSaidaRealizada() +
+                    " - Saï¿½da Prevista: " + horaExtra.getSaidaPrevista() +
+                    " - Saï¿½da Realizada: " + horaExtra.getSaidaRealizada() +
                     " - Hora Extra Entrada: " + horaExtra.getHoraExtraEntrada() + " min" +
-                    " - Hora Extra Saída: " + horaExtra.getHoraExtraSaida() + " min");
+                    " - Hora Extra Saï¿½da: " + horaExtra.getHoraExtraSaida() + " min");
         }
     }
 }

@@ -67,6 +67,34 @@ public class MarcacoesFeitasDAO {
         return horarios; 
     }
     
+    public MarcacoesFeitas buscarMarcacoesFeitasPorCpf(String cpf) {
+        String sql = "SELECT * FROM MarcacoesFeitas WHERE cpf = ?";
+
+        try (java.sql.Connection con = conn.conectar();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, cpf);
+
+            try (ResultSet rs = stmt.executeQuery()) {      
+
+                if (rs.next()) {                   
+                    MarcacoesFeitas marcacao = new MarcacoesFeitas();
+                    marcacao.setId(rs.getLong("id"));
+                    marcacao.setCpf(rs.getString("cpf"));
+                    marcacao.setEntrada(rs.getString("entrada"));
+                    marcacao.setIntervaloInicio(rs.getString("inicio_Intervalo"));
+                    marcacao.setIntervaloFim(rs.getString("fim_Intervalo"));
+                    marcacao.setSaida(rs.getString("saida"));
+
+                    return marcacao;
+                }
+            }
+     
+    }catch (SQLException e) {
+        e.printStackTrace();
+    }
+        return null; 
+ }
+    
     public  List<MarcacoesFeitas> listarMarcacoesFeitasPorCpf(String cpf) {
         String sql = "SELECT * FROM HorarioTrabalho WHERE cpf = ?";
         List<MarcacoesFeitas> horarios = new ArrayList<>();

@@ -22,13 +22,7 @@ public class TestesIntegration_CalculoHoraExtra {
 			
 		} catch (Exception e) {
 			System.out.println(e);
-		}
-		
-		
-		
-		
-		
-		
+		}		
 		
 	}
 

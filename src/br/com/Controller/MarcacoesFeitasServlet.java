@@ -1,14 +1,16 @@
 package br.com.Controller;
 
-import br.com.DAO.MarcacoesFeitasDAO;
-import br.com.Entity.MarcacoesFeitas;
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.com.DAO.MarcacoesFeitasDAO;
+import br.com.Entity.MarcacoesFeitas;
 
 @WebServlet("/MarcacoesFeitasServlet")
 public class MarcacoesFeitasServlet extends HttpServlet {
@@ -46,9 +48,7 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         String saida = request.getParameter("saida");
 
         if (        	
-           entrada == null || entrada.isEmpty() ||
-           intervaloInicio == null || intervaloInicio.isEmpty() ||
-           intervaloFim == null || intervaloFim.isEmpty() ||
+           entrada == null || entrada.isEmpty() ||           
             saida == null || saida.isEmpty()) {
         	 throw new Exception("Todos os campos devem ser preenchidos");
         }
@@ -60,8 +60,8 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         horario.setIntervaloFim(intervaloFim);
         horario.setSaida(saida);
 
-        marcacoesFeitasDAO.adicionarMarcacao(horario);
-
+        marcacoesFeitasDAO.adicionarMarcacao(horario);        
+        
         listarMarcacoes(request, response);
         
 }
