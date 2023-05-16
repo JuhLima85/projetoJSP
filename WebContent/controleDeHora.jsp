@@ -50,9 +50,7 @@
 						<button class="editar" onclick="editarHorario(${horario.id})">Editar</button>						
 						<button class="excluir" onclick="excluirHorario(${horario.id})">Excluir</button>
 					</td>
-				</tr>
-				<script>    			
-  			</script>
+				</tr>				
 			</c:forEach>
 		</tbody>
 	</table>
@@ -99,15 +97,14 @@
 			</tr>	
 		</thead>
 		<tbody>
-			<c:forEach var="ats" items="${at}">
+			<c:forEach var="at" items="${atraso}">
 				<tr>
 					<td>${at.periodoAtraso}</td>
 					<td>${at.entrada}</td>
 				</tr>
-				 <script>
-    console.log(${at}); // aqui está o console.log() que você pode adicionar
-  </script>
+				 console.log(${at.id});				
 			</c:forEach>
+			
 		</tbody>
 	</table>
 	<h2 class="comMargem">Hora Extra</h2>
@@ -115,10 +112,9 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
 	<script>
 
-    console.log(${horario}); // aqui está o console.log() que você pode adicionar
+    console.log(${at.id}); // aqui está o console.log() que você pode adicionar
  
 	function editarHorario(id) {
         // Redireciona para a página de edição passando o ID como parâmetro na URL

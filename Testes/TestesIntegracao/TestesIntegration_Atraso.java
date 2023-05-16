@@ -4,16 +4,21 @@ import java.util.List;
 
 import br.com.DAO.CalculoAtrasoDAO;
 import br.com.Entity.CalculoAtraso;
+import br.com.erro.ResultadoCalculoAtraso;
 
 public class TestesIntegration_Atraso {
 
 	public static void main(String[] args) {
 		CalculoAtraso cca2 = new CalculoAtraso();
 		CalculoAtrasoDAO ccaDao = new CalculoAtrasoDAO();
-
+		ResultadoCalculoAtraso marcacoesParaCalculo = new ResultadoCalculoAtraso();
+		marcacoesParaCalculo.setCpf("01439869103");
+		marcacoesParaCalculo.setEntrada("10:00:00");
+		marcacoesParaCalculo.setSaida("12:00:00");
+		
 		String cpf = "01439869103";
 		
-		ccaDao.calcularEInserirAtraso(cpf);
+		ccaDao.calcularEInserirAtraso(marcacoesParaCalculo);
 				
 		//-------------Metodo para Listar todos os registros--------
 		List<CalculoAtraso> horario = ccaDao.listarTodosCalculoAtraso();

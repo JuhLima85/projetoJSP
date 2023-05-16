@@ -16,7 +16,7 @@ import br.com.Entity.MarcacoesFeitas;
 public class MarcacoesFeitasServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
-    private MarcacoesFeitasDAO marcacoesFeitasDAO;
+    private MarcacoesFeitasDAO marcacoesFeitasDAO;    
 
     public void init() {
         marcacoesFeitasDAO = new MarcacoesFeitasDAO();
@@ -31,7 +31,9 @@ public class MarcacoesFeitasServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
+            throws ServletException, IOException {   
+    	//Teste
+    	 System.out.println("Iniciando doPost() em MarcacoesFeitasDAO");
         try {
         	adicionarMarcacao(request, response);
         } catch (Exception e) {
@@ -60,7 +62,11 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         horario.setIntervaloFim(intervaloFim);
         horario.setSaida(saida);
 
-        marcacoesFeitasDAO.adicionarMarcacao(horario);        
+        marcacoesFeitasDAO.adicionarMarcacao(horario);   
+        
+        // Chama o método adicionarAtraso      
+        CalculoAtrasoServlet calculoAtrasoServlet = new CalculoAtrasoServlet();  
+        calculoAtrasoServlet.adicionarAtraso(cpf, entrada, saida, request, response);
         
         listarMarcacoes(request, response);
         

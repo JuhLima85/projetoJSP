@@ -37,6 +37,8 @@ public class HoraDeTrabalhoServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//Teste
+		 System.out.println("Iniciando doPost() em HoraDeTrabalhoServlet");
 		String action = request.getParameter("action");
 
 		try {
