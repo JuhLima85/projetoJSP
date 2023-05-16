@@ -6,6 +6,7 @@ public class ResultadoCalculoAtraso {
     private String periodoAtraso;
     private CodigoErro codigoErro;
     private String mensagem;
+<<<<<<< HEAD
     private String cpf;
     private String entrada;
     private String saida;   
@@ -23,6 +24,10 @@ public class ResultadoCalculoAtraso {
 	}
 
 	public ResultadoCalculoAtraso(String diferenca, String periodoAtraso) {
+=======
+    
+    public ResultadoCalculoAtraso(String diferenca, String periodoAtraso) {
+>>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
         this.diferenca = diferenca;
         this.periodoAtraso = periodoAtraso;
     }
@@ -46,6 +51,7 @@ public class ResultadoCalculoAtraso {
     public String getMensagem() {
         return mensagem;
     }
+<<<<<<< HEAD
     public String getCpf() {
 		return cpf;
 	}
@@ -69,4 +75,6 @@ public class ResultadoCalculoAtraso {
 	public void setSaida(String saida) {
 		this.saida = saida;
 	}
+=======
+>>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
 }

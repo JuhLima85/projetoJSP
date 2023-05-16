@@ -11,6 +11,7 @@ public class TestesIntegration_Atraso {
 	public static void main(String[] args) {
 		CalculoAtraso cca2 = new CalculoAtraso();
 		CalculoAtrasoDAO ccaDao = new CalculoAtrasoDAO();
+<<<<<<< HEAD
 		ResultadoCalculoAtraso marcacoesParaCalculo = new ResultadoCalculoAtraso();
 		marcacoesParaCalculo.setCpf("01439869103");
 		marcacoesParaCalculo.setEntrada("10:00:00");
@@ -23,6 +24,16 @@ public class TestesIntegration_Atraso {
 		//-------------Metodo para Listar todos os registros--------
 		List<CalculoAtraso> horario = ccaDao.listarTodosCalculoAtraso();
 
+=======
+
+		String cpf = "01439869103";
+		
+		ccaDao.calcularEInserirAtraso(cpf);
+				
+		//-------------Metodo para Listar todos os registros--------
+		List<CalculoAtraso> horario = ccaDao.listarTodosCalculoAtraso();
+
+>>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
 		for (CalculoAtraso mfs : horario) {
 			System.out.println("CPF : " + mfs.getCpf() + "Entrada: " + mfs.getEntrada() + ", Sa�da: " + mfs.getSaida()); 
 		}

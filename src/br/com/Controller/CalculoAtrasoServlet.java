@@ -1,5 +1,12 @@
 package br.com.Controller;
 
+<<<<<<< HEAD
+=======
+import br.com.DAO.CalculoAtrasoDAO;
+import br.com.Entity.CalculoAtraso;
+import br.com.Entity.HorarioDeTrabalho;
+
+>>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
 import java.io.IOException;
 import java.util.List;
 
@@ -19,10 +26,22 @@ public class CalculoAtrasoServlet extends HttpServlet {
     
     private CalculoAtrasoDAO calculoAtrasoDAO;
    
+<<<<<<< HEAD
     public void init() {
         calculoAtrasoDAO = new CalculoAtrasoDAO();       
+=======
+    public void init() {    	
+        calculoAtrasoDAO = new CalculoAtrasoDAO();
+        listaratrasos();
+>>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
     }
+    
+    private void listaratrasos() {
+      	 List<CalculoAtraso> at = calculoAtrasoDAO.listarTodosCalculoAtraso();
+      	 getServletContext().setAttribute("at", at);
+      }
 
+<<<<<<< HEAD
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        //Teste
     	System.out.println("Iniciando doPost() em CalculoAtrasoDAO");
@@ -64,6 +83,46 @@ public class CalculoAtrasoServlet extends HttpServlet {
         listarAtrasos(request, response);        
     }
 
+=======
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");        
+        
+        try {
+			switch (action) {
+			case "calcularAtraso":
+				adicionarAtraso(request, response);
+				break;						
+			default:
+				listarAtrasos(request, response);
+				break;
+			}
+		} catch (Exception e) {
+			// trata a exceção
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("Ocorreu um erro ao processar a solicitação: " + e.getMessage());
+		}
+    }  
+    
+    private void adicionarAtraso(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String cpf = request.getParameter("cpf");
+		String entrada = request.getParameter("entrada");
+		String saida = request.getParameter("saida");
+		String periodoAtraso = request.getParameter("periodoAtraso");		
+
+		if (cpf == null || cpf.isEmpty() || entrada == null || entrada.isEmpty() || saida == null || saida.isEmpty()) {
+			throw new Exception("Todos os campos devem ser preenchidos");
+		}
+
+		CalculoAtraso atraso = new CalculoAtraso();
+		atraso.setCpf(cpf);
+		atraso.setEntrada(entrada);		
+		atraso.setSaida(saida);
+		atraso.setPeriodoAtraso(periodoAtraso);
+		calculoAtrasoDAO.calcularEInserirAtraso(cpf);
+		listarAtrasos(request, response);
+	}
+>>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
 
     private void listarAtrasos(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {    	 
