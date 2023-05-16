@@ -53,21 +53,15 @@ public class CalculoAtrasoDAO {
 
 		// Se n�o houve atraso
 		return "Sem atraso.";
-	}
-	
-<<<<<<< HEAD
+	}	
+
 	public ResultadoCalculoAtraso calculoDeHorasExtras(String cpf, String entradaMarcacao, String saidaMarcacao) {
 	    
 		MarcacoesFeitas mf = new MarcacoesFeitas();
 		mf.setCpf(cpf);
 		mf.setEntrada(entradaMarcacao);
-		mf.setSaida(saidaMarcacao);
-		
-=======
-	public ResultadoCalculoAtraso calculoDeHorasExtras(String cpf) {
-	    MarcacoesFeitasDAO mfdao = new MarcacoesFeitasDAO();
-	    MarcacoesFeitas mf = mfdao.buscarMarcacoesFeitasPorCpf(cpf);
->>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
+		mf.setSaida(saidaMarcacao);	
+
 	    HoraDeTrabalhoDAO hdtdao = new HoraDeTrabalhoDAO();
 	    HorarioDeTrabalho hdt = hdtdao.buscarHorarioDeTrabalhoPorCpf(cpf);
 
@@ -107,17 +101,12 @@ public class CalculoAtrasoDAO {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	    }
-	    
-<<<<<<< HEAD
+	    }	    
+
 	    public void calcularEInserirAtraso( ResultadoCalculoAtraso marcacoesParaCalculo) {
 	    	
 	        ResultadoCalculoAtraso resultado = calculoDeHorasExtras( marcacoesParaCalculo.getCpf(), marcacoesParaCalculo.getEntrada(), marcacoesParaCalculo.getSaida());
-=======
-	    public void calcularEInserirAtraso(String cpf) {
-	        ResultadoCalculoAtraso resultado = calculoDeHorasExtras(cpf);
->>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
-	        
+      
 	        String atraso = resultado.getDiferenca();
 	        // Remova a parte inicial da string para ficar apenas com "X horas e Y minutos"
 	        atraso = atraso.replace("A diferenca e: ", "");
@@ -135,26 +124,17 @@ public class CalculoAtrasoDAO {
 	        
 	        // Agora podemos criar um novo objeto CalculoAtraso e inseri-lo no banco de dados
 	        CalculoAtraso calculoAtraso = new CalculoAtraso();
-<<<<<<< HEAD
+
 	        calculoAtraso.setCpf(marcacoesParaCalculo.getCpf());
-=======
-	        calculoAtraso.setCpf(cpf);
->>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
+
 	        calculoAtraso.setEntrada(timeSql);
 	        calculoAtraso.setSaida(timeSql);
 	        
 	        // Defina o campo 'periodoAtraso' do objeto CalculoAtraso com o valor adequado
 	        calculoAtraso.setPeriodoAtraso(periodoAtraso);
 	        
-<<<<<<< HEAD
 	        // Inserimos o atraso no banco de dados	        
 	       inserirAtraso(calculoAtraso);
-
-=======
-	        // Inserimos o atraso no banco de dados
-	        CalculoAtrasoDAO atrasoDAO = new CalculoAtrasoDAO();
-	        atrasoDAO.inserirAtraso(calculoAtraso);
->>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
 	    }	   
 	    
 	    //Metodo para listar todos
@@ -183,8 +163,6 @@ public class CalculoAtrasoDAO {
 	        return horarios; 
 	    }
 
-<<<<<<< HEAD
-=======
 	    //busca por cpf
 	    public CalculoAtraso buscarCalculoAtrasoPorCpf(String cpf) {
 	        String sql = "SELECT cpf, entrada, saida FROM atraso WHERE cpf = ?";
@@ -216,10 +194,4 @@ public class CalculoAtrasoDAO {
 
 	        return null; 
 	    }
-
-	   
-
-
-
->>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
 }

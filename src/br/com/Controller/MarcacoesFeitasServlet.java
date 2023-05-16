@@ -61,16 +61,14 @@ public class MarcacoesFeitasServlet extends HttpServlet {
         horario.setIntervaloInicio(intervaloInicio);
         horario.setIntervaloFim(intervaloFim);
         horario.setSaida(saida);
-
-<<<<<<< HEAD
         marcacoesFeitasDAO.adicionarMarcacao(horario);   
         
         // Chama o método adicionarAtraso      
         CalculoAtrasoServlet calculoAtrasoServlet = new CalculoAtrasoServlet();  
         calculoAtrasoServlet.adicionarAtraso(cpf, entrada, saida, request, response);
-=======
+
         marcacoesFeitasDAO.adicionarMarcacao(horario);        
->>>>>>> f7ebaaf26b0257b9afad7a1bf04762570dc04726
+
         
         listarMarcacoes(request, response);
         
