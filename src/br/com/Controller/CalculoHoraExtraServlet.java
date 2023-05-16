@@ -70,4 +70,3 @@ public class CalculoHoraExtraServlet extends HttpServlet {
         request.getRequestDispatcher("listarHorasExtras.jsp").forward(request, response);
     }
 }
-

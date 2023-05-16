@@ -19,23 +19,6 @@ public class HoraDeTrabalhoDAO {
 		horarios = new ArrayList<>(3);
 	}
 
-//	public void adicionarHorario(HorarioDeTrabalho horario) {
-//		String sql = "INSERT INTO HorarioTrabalho (cpf, entrada, inicio_Intervalo, fim_Intervalo, saida) VALUES (?, ?, ?, ?, ?)";
-//
-//		try (java.sql.Connection con = conn.conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
-//
-//			stmt.setString(1, horario.getCpf());
-//			stmt.setString(2, horario.getEntrada());
-//			stmt.setString(3, horario.getIntervaloInicio());
-//			stmt.setString(4, horario.getIntervaloFim());
-//			stmt.setString(5, horario.getSaida());
-//
-//			stmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	public void adicionarHorarioDeTrabalho(HorarioDeTrabalho horario) {
 		String sql = "INSERT INTO HorarioTrabalho (cpf, entrada, inicio_Intervalo, fim_Intervalo, saida) VALUES (?, ?, ?, ?, ?)";
 
@@ -80,8 +63,8 @@ public class HoraDeTrabalhoDAO {
 		return horarios;
 	}
 
-	public HorarioDeTrabalho listarHorarioDeTrabalhoPorCpf(String cpf) {
-		String sql = "SELECT cpf, entrada, inicio_Intervalo, fim_Intervalo, saida FROM HorarioTrabalho WHERE cpf = ?";
+	public HorarioDeTrabalho buscarHorarioDeTrabalhoPorCpf(String cpf) {
+		String sql = "SELECT * FROM HorarioTrabalho WHERE cpf = ?";
 
 		try (java.sql.Connection con = conn.conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
 
@@ -91,6 +74,7 @@ public class HoraDeTrabalhoDAO {
 
 				if (rs.next()) {
 					HorarioDeTrabalho horario = new HorarioDeTrabalho();
+					horario.setId(rs.getLong("id"));
 					horario.setCpf(rs.getString("cpf"));
 					horario.setEntrada(rs.getString("entrada"));
 					horario.setIntervaloInicio(rs.getString("inicio_Intervalo"));

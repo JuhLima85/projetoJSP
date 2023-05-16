@@ -6,30 +6,26 @@ import java.util.List;
 public class CalculoAtraso {
 	private Long id;
 	private String cpf;
-    private String data;
-    private String entradaPrevista;
-    private String entradaRealizada;
-    private String saidaPrevista;
-    private String saidaRealizada;
-    private int atrasoEntrada;
-    private int atrasoSaida;
+	private String entrada;
+	private String intervaloInicio;
+    private String intervaloFim;
+    private String saida;
+    private String periodoAtraso;
+    
 
    public CalculoAtraso() {
 	// TODO Auto-generated constructor stub
 }
    
-	public CalculoAtraso(Long id, String cpf, String data, String entradaPrevista, String entradaRealizada,
-		String saidaPrevista, String saidaRealizada, int atrasoEntrada, int atrasoSaida) {
+	public CalculoAtraso(Long id, String cpf, String entrada, String intervaloInicio, String intervaloFim, String saida, String periodoAtraso) {
 	super();
 	this.id = id;
 	this.cpf = cpf;
-	this.data = data;
-	this.entradaPrevista = entradaPrevista;
-	this.entradaRealizada = entradaRealizada;
-	this.saidaPrevista = saidaPrevista;
-	this.saidaRealizada = saidaRealizada;
-	this.atrasoEntrada = atrasoEntrada;
-	this.atrasoSaida = atrasoSaida;
+	this.entrada = entrada;
+	this.intervaloInicio = intervaloInicio;
+	this.intervaloFim = intervaloFim;
+	this.saida = saida;
+	this.periodoAtraso = periodoAtraso;
 }
 
 	public Long getId() {
@@ -48,62 +44,45 @@ public class CalculoAtraso {
 		this.cpf = cpf;
 	}
 
-	public String getData() {
-		return data;
+	public String getEntrada() {
+		return entrada;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setEntrada(String entrada) {
+		this.entrada = entrada;
 	}
 
-	public String getEntradaPrevista() {
-		return entradaPrevista;
+	public String getIntervaloInicio() {
+		return intervaloInicio;
 	}
 
-	public void setEntradaPrevista(String entradaPrevista) {
-		this.entradaPrevista = entradaPrevista;
+	public void setIntervaloInicio(String intervaloInicio) {
+		this.intervaloInicio = intervaloInicio;
 	}
 
-	public String getEntradaRealizada() {
-		return entradaRealizada;
+	public String getIntervaloFim() {
+		return intervaloFim;
 	}
 
-	public void setEntradaRealizada(String entradaRealizada) {
-		this.entradaRealizada = entradaRealizada;
+	public void setIntervaloFim(String intervaloFim) {
+		this.intervaloFim = intervaloFim;
 	}
 
-	public String getSaidaPrevista() {
-		return saidaPrevista;
+	public String getSaida() {
+		return saida;
 	}
 
-	public void setSaidaPrevista(String saidaPrevista) {
-		this.saidaPrevista = saidaPrevista;
+	public void setSaida(String saida) {
+		this.saida = saida;
 	}
+	
+	 public String getPeriodoAtraso() {
+	        return periodoAtraso;
+	    }
 
-	public String getSaidaRealizada() {
-		return saidaRealizada;
-	}
-
-	public void setSaidaRealizada(String saidaRealizada) {
-		this.saidaRealizada = saidaRealizada;
-	}
-
-	public int getAtrasoEntrada() {
-		return atrasoEntrada;
-	}
-
-	public void setAtrasoEntrada(int atrasoEntrada) {
-		this.atrasoEntrada = atrasoEntrada;
-	}
-
-	public int getAtrasoSaida() {
-		return atrasoSaida;
-	}
-
-	public void setAtrasoSaida(int atrasoSaida) {
-		this.atrasoSaida = atrasoSaida;
-	}
-
+	    public void setPeriodoAtraso(String periodoAtraso) {
+	        this.periodoAtraso = periodoAtraso;
+	    }
 }
 
 class CalculoAtrasoList {
@@ -125,5 +104,4 @@ class CalculoAtrasoList {
 		return false;
     }
  }
-
 
